@@ -63,13 +63,13 @@
 				<mongo.host.master>127.0.0.1</mongo.host.master>
 				<mongo.port.master>27017</mongo.port.master>
 				<mongo.dbname.master>test</mongo.dbname.master>
-				<mongo.username.master>test</mongo.username.master>
-				<mongo.password.master>123456</mongo.password.master>
+				<mongo.username.master>root</mongo.username.master>
+				<mongo.password.master>xx</mongo.password.master>
 				<!-- mysql -->
 				<mysql.driverClassName>com.mysql.jdbc.Driver</mysql.driverClassName>
-				<mysql.url>jdbc:mysql://127.0.0.1:3306/dev?autoReconnect=true</mysql.url>
+				<mysql.url>jdbc:mysql://127.0.0.1:3306/mgr_frame?autoReconnect=true</mysql.url>
 				<mysql.username>root</mysql.username>
-				<mysql.password>123456</mysql.password>				
+				<mysql.password></mysql.password>				
             </properties>
         </profile>
         

@@ -45,7 +45,7 @@
         <property name="triggers">
             <list>
                 <ref bean="repeatTestTrigger"/>
-                <ref bean="statisticsTagsTrigger"/>
+                <!-- <ref bean="statisticsTagsTrigger"/> -->
             </list>
         </property>
     </bean>
