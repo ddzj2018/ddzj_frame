@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- 每天生成一个日志文件 -->
+	<appender name="MAINFILELOG" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="File" value="${server.log.path}/mgr_frame.log" />
+		<param name="DatePattern" value="'.'yyyy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss\} %-5p] [%t] (%c:%L) - %m%n" />
+		</layout>
+	</appender>
+	<!-- 输出到控制台 -->
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p: %m%n" />
+		</layout>
+	</appender>
+	<!--root输出整个工程所有的日志 -->
+	<root>
+		<level value="${server.log.level}" />
+		<appender-ref ref="MAINFILELOG" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</log4j:configuration>

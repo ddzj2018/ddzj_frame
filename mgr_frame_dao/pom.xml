@@ -4,7 +4,7 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.zcw.learn</groupId>
+		<groupId>com.mgr.learn</groupId>
 		<artifactId>mgr_frame</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
@@ -13,7 +13,12 @@
 	<packaging>jar</packaging>
 	<dependencies>
 		<dependency>
-			<groupId>com.zcw.learn</groupId>
+			<groupId>com.mgr.learn</groupId>
+			<artifactId>mgr_frame_domain</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.mgr.learn</groupId>
 			<artifactId>mgr_frame_common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

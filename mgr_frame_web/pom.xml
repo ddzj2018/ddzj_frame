@@ -1,10 +1,9 @@
 <?xml version="1.0"?>
-<project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.zcw.learn</groupId>
+		<groupId>com.mgr.learn</groupId>
 		<artifactId>mgr_frame</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
@@ -13,9 +12,20 @@
 	<name>mgr_frame_web</name>
 	<dependencies>
 		<dependency>
-			<groupId>com.zcw.learn</groupId>
+			<groupId>com.mgr.learn</groupId>
 			<artifactId>mgr_frame_service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.4</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.ibeetl</groupId>
+			<artifactId>beetl</artifactId>
+			<version>2.5.2</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -24,7 +34,64 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+
 	<build>
-		<finalName>mgr_frame_web</finalName>
-	</build>
+        <finalName>mgr_frame_web</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resource</directory>
+                <filtering>true</filtering>
+                <!--<includes>-->
+                    <!--<include>*.*</include>-->
+                <!--</includes>-->
+                <excludes>
+                    <exclude>*.p12</exclude>
+                </excludes>
+            </resource>
+        </resources>
+    </build>
+    
+    <profiles>
+        <profile>
+            <id>development</id>
+            <properties>                
+                <!--log-->
+                <serverside.log.encoding>UTF-8</serverside.log.encoding>
+                <server.log.level>INFO</server.log.level>
+                <server.log.path>D:/logs/mgr_frame</server.log.path>
+				<!-- mongo -->
+				<mongo.host.master>127.0.0.1</mongo.host.master>
+				<mongo.port.master>27017</mongo.port.master>
+				<mongo.dbname.master>test</mongo.dbname.master>
+				<mongo.username.master>test</mongo.username.master>
+				<mongo.password.master>123456</mongo.password.master>
+				<!-- mysql -->
+				<mysql.driverClassName>com.mysql.jdbc.Driver</mysql.driverClassName>
+				<mysql.url>jdbc:mysql://127.0.0.1:3306/dev?autoReconnect=true</mysql.url>
+				<mysql.username>root</mysql.username>
+				<mysql.password>123456</mysql.password>				
+            </properties>
+        </profile>
+        
+        <profile>
+            <id>production</id>
+            <properties>
+                <!--log-->
+                <serverside.log.encoding>UTF-8</serverside.log.encoding>
+                <server.log.level>INFO</server.log.level>
+                <server.log.path>D:/logs/mgr_frame</server.log.path>
+				<!-- mongo -->
+				<mongo.host.master>127.0.0.1</mongo.host.master>
+				<mongo.port.master>27017</mongo.port.master>
+				<mongo.dbname.master>test</mongo.dbname.master>
+				<mongo.username.master>test</mongo.username.master>
+				<mongo.password.master>123456</mongo.password.master>
+				<!-- mysql -->
+				<mysql.driverClassName>com.mysql.jdbc.Driver</mysql.driverClassName>
+				<mysql.url>jdbc:mysql://127.0.0.1:3306/dev?autoReconnect=true</mysql.url>
+				<mysql.username>root</mysql.username>
+				<mysql.password>123456</mysql.password>				
+            </properties>
+        </profile>
+       </profiles>
 </project>

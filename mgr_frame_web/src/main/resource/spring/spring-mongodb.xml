@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+    xsi:schemaLocation="http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context.xsd
+          http://www.springframework.org/schema/data/mongo
+          http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+          http://www.springframework.org/schema/beans
+          http://www.springframework.org/schema/beans/spring-beans.xsd">   
+  	<!-- jrpush mongo config -->
+  	
+	<!-- <mongo:mongo id="replicaSetMongo" replica-set="127.0.0.1:27017,localhost:27018"/> --><!-- 副本集配置样例 -->
+	
+	<mongo:mongo id="userMongo" host="${mongo.host.master}" port="${mongo.port.master}">
+		<mongo:options auto-connect-retry="true" />
+	</mongo:mongo>
+    <mongo:db-factory id="userMongoFactory" mongo-ref="userMongo" dbname="${mongo.dbname.master}"  username="${mongo.username.master}" password="${mongo.password.master}"/>
+    <bean id="mongoTemplateUserMaster" class="org.springframework.data.mongodb.core.MongoTemplate">
+      	<constructor-arg name="mongoDbFactory" ref="userMongoFactory"/>
+    </bean>
+    
+    <!-- other -->
+    
+</beans>

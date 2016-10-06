@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+	        http://www.springframework.org/schema/beans
+	        http://www.springframework.org/schema/beans/spring-beans.xsd
+	        http://www.springframework.org/schema/task
+	        http://www.springframework.org/schema/task/spring-task-3.0.xsd"
+	default-autowire="byName">
+       
+    <bean id="exportDataTask" class="com.mgr.learn.task.ExportDataTask"/>
+    <!-- 任务执行的方法 -->
+    <bean id="repeatTestMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="exportDataTask"/>
+        <property name="targetMethod" value="repeatTest"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    <!-- task 执行规则--> <!-- 启动后三分钟,每隔一分钟重复执行 -->
+    <bean id="repeatTestTrigger" class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean">
+        <property name="jobDetail" ref="repeatTestMethod"/>
+        <property name="startDelay" value="180000"/>
+        <property name="repeatInterval" value="60000"/>
+    </bean>
+    
+    <!--推送业务消息不能立即发送得 如凌晨产生业务消息-->
+    <bean id="statisticsTagsMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="exportDataTask"/>
+        <property name="targetMethod" value="statisticsTags"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+    
+    <!--每天九点执行-->
+    <bean id="statisticsTagsTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+         <property name="jobDetail">
+              <ref bean="statisticsTagsMethod"/>
+         </property>
+         <!-- cron表达式 -->
+         <property name="cronExpression">
+             <value>0 38 20 27 * ?</value>
+         </property>
+    </bean>
+    
+    <!-- 多个任务配置文件,此id在项目中唯一  -->
+    <bean id="mainScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" autowire="no">
+        <property name="triggers">
+            <list>
+                <ref bean="repeatTestTrigger"/>
+                <ref bean="statisticsTagsTrigger"/>
+            </list>
+        </property>
+    </bean>
+    
+  
+    
+
+</beans>
