@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mgr.learn.dao.mapper.IUserMapper">
+	<insert id="insert" parameterType="com.mgr.learn.domain.User" useGeneratedKeys="true" keyProperty="id">
+		insert into user(userName,password,createTime)
+		values (
+		#{userName,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{createTime,jdbcType=VARCHAR}
+		)
+	</insert>
+	<delete id="del" parameterType="int">
+		delete from user where id=#{id}
+	</delete>
+	<update id="update" parameterType="com.mgr.learn.domain.User">
+		update user
+		set
+		userName=#{userName,jdbcType=VARCHAR},
+		password=#{password,jdbcType=VARCHAR}
+		where id =#{id,jdbcType=INTEGER}
+	</update>
+	<select id="getUserById" resultType="com.mgr.learn.domain.User" parameterType="int">
+		select
+		id,userName,password,createTime,timestamp
+		from
+		user where id=#{id}
+	</select>
+	<select id="getUserByUserName" resultType="com.mgr.learn.domain.User" parameterType="String">
+		select
+		id,userName,password,createTime,timestamp
+		from
+		user where userName=#{userName}
+	</select>
+	<select id="find" resultType="com.mgr.learn.domain.User" parameterType="java.util.Map">
+		<![CDATA[  
+		select id,userName,password,createTime,timestamp from user where 1=1 
+		]]>
+		<if test="userName != null and '' != userName">  
+            <![CDATA[  
+              AND userName like '%${userName}%' 
+            ]]>
+		</if>
+		order by userName limit #{pageNum},#{pageSize}
+	</select>
+	<select id="count" resultType="int" parameterType="java.util.Map">
+		<![CDATA[
+		select count(id) from user where 1=1 
+		]]>
+		<if test="userName != null and '' != userName">  
+            <![CDATA[  
+              AND userName like '%${userName}%'
+            ]]>
+		</if>
+	</select>
+</mapper>

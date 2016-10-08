@@ -27,6 +27,8 @@
         <property name="maxUploadSize" value="104857600" />
         <property name="maxInMemorySize" value="4096" />
 	</bean>
+	<!-- 启用注解标签 -->
+	<mvc:annotation-driven />
 	<!-- 模板配置 -->
 	<bean id="beetlConfig" class="org.beetl.ext.spring.BeetlGroupUtilConfiguration" init-method="init">
 		<property name="configFileResource" value="/WEB-INF/classes/beetl.properties"/>

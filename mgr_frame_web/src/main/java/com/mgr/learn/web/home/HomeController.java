@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.mgr.learn.api.IUsersService;
+import com.mgr.learn.api.IUserService;
 /**
  * 前端首页
  * @author zhouchangwei
@@ -17,7 +17,7 @@ import com.mgr.learn.api.IUsersService;
 public class HomeController {
 	private static Logger log = Logger.getLogger(HomeController.class);
 	@Autowired(required = false)
-	private IUsersService usersServiceImpl;
+	private IUserService usersServiceImpl;
 	/**
 	 * 前端首页
 	 * @param model

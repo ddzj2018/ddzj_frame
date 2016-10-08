@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mgr.learn.api.IUsersService;
+import com.mgr.learn.api.IUserService;
 /**
  * Admin控制器
  * @author zhouchangwei
@@ -18,7 +18,7 @@ import com.mgr.learn.api.IUsersService;
 public class AdminController {
 	private static Logger log = Logger.getLogger(AdminController.class);
 	@Autowired(required = false)
-	private IUsersService usersServiceImpl;
+	private IUserService usersServiceImpl;
 	/**
 	 * 登录页面
 	 * @param model
