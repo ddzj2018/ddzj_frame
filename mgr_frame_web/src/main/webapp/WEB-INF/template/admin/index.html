@@ -1,127 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>统一管理系统</title>
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/cdnjs/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/cdnjs/ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/dist/css/AdminLTE.min.css">
-  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/dist/css/skins/_all-skins.min.css">
-  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/iCheck/flat/blue.css">
-  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/morris/morris.css">
-  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
-  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/datepicker/datepicker3.css">
-  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/daterangepicker/daterangepicker.css">
-  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-</head>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-  <!-- 顶部内容begin -->
-  <header class="main-header">
-    <a href="${ctxPath!}/admin/index" class="logo">
-      <span class="logo-mini"><b>Ad</b></span>
-      <span class="logo-lg">统一管理系统</span>
-    </a>
-    <nav class="navbar navbar-static-top">
-      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
-        <span class="sr-only">切换导航</span>
-      </a>
-      <div class="navbar-custom-menu">
-        <ul class="nav navbar-nav">
-          <li class="dropdown user user-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="${ctxPath!}/res/adminlte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Admin</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="user-header">
-                <img src="${ctxPath!}/res/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                <p>
-                  Admin - 超级管理员
-                  <small>最近一次登录时间:2016-10-08 15:23:00</small>
-                </p>
-              </li>
-              <li class="user-footer">
-                <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">退出</a>
-                </div>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
-  <!-- 顶部内容end -->
-  <!-- 左侧导航菜单栏begin-->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- Sidebar user panel -->      
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu">
-        <li class="header">导航菜单</li>
-        <li class="active treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-          </ul>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Layout Options</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-            <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
-          </ul>
-        </li>
-        <li>
-          <a href="pages/widgets.html">
-            <i class="fa fa-th"></i> <span>Widgets</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
-          </a>
-        </li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>UI Elements</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
-          </ul>
-        </li>
-      </ul>
-    </section>
-  </aside>
-  <!-- 左侧导航菜单栏end-->
-
-  <!-- 中间主内容区 begin -->
+<%
+include("../frame/header.html"){}
+include("../frame/nav.html"){}
+%>
+<!-- 中间主内容区 begin -->
   <div class="content-wrapper">
     <!-- 面包屑begin -->
     <section class="content-header">
@@ -133,7 +14,6 @@
       </ol>
     </section>
     <!-- 面包屑end -->
-
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
@@ -204,41 +84,7 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- 中间主内容区end -->
-  <!-- footer begin -->
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.3.6
-    </div>
-    <strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
-  <!-- footer end -->
-
-  <!-- Add the sidebar's background. This div must be placed immediately after the control sidebar -->
-  <div class="control-sidebar-bg"></div>
-</div>
-<!-- load js -->
-<script src="${ctxPath!}/res/adminlte/plugins/jQuery/jquery-2.2.3.min.js"></script>
-<script src="${ctxPath!}/res/adminlte/plugins/jQueryUI/jquery-ui.min.js"></script>
-<script src="${ctxPath!}/res/adminlte/bootstrap/js/bootstrap.min.js"></script>
-<script src="${ctxPath!}/res/adminlte/plugins/cdnjs/raphael-min.js"></script>
-<script src="${ctxPath!}/res/adminlte/plugins/morris/morris.min.js"></script>
-<script src="${ctxPath!}/res/adminlte/plugins/sparkline/jquery.sparkline.min.js"></script>
-<script src="${ctxPath!}/res/adminlte/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-<script src="${ctxPath!}/res/adminlte/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
-<script src="${ctxPath!}/res/adminlte/plugins/knob/jquery.knob.js"></script>
-<script src="${ctxPath!}/res/adminlte/plugins/cdnjs/moment.min.js"></script>
-<script src="${ctxPath!}/res/adminlte/plugins/daterangepicker/daterangepicker.js"></script>
-<script src="${ctxPath!}/res/adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
-<script src="${ctxPath!}/res/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<script src="${ctxPath!}/res/adminlte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-<script src="${ctxPath!}/res/adminlte/plugins/fastclick/fastclick.js"></script>
-<script src="${ctxPath!}/res/adminlte/dist/js/app.min.js"></script>
-<script src="${ctxPath!}/res/adminlte/dist/js/pages/dashboard.js"></script>
-<script src="${ctxPath!}/res/adminlte/dist/js/demo.js"></script>
-<script>
-  $.widget.bridge('uibutton', $.ui.button);
-</script>
-</body>
-</html>
+ <!-- 中间主内容区end -->
+<%
+include("../frame/footer.html"){}
+%>

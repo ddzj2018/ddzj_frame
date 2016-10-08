@@ -1,10 +1,58 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<title>test</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>统一管理系统</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/cdnjs/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/cdnjs/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/iCheck/flat/blue.css">
+  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/morris/morris.css">
+  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/datepicker/datepicker3.css">
+  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="${ctxPath!}/res/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 </head>
-<body>
-	${ctxPath!} ---- ${info!}
-</body>
-</html>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+  <!-- 顶部内容begin -->
+  <header class="main-header">
+    <a href="${ctxPath!}/admin/index" class="logo">
+      <span class="logo-mini"><b>Ad</b></span>
+      <span class="logo-lg">统一管理系统</span>
+    </a>
+    <nav class="navbar navbar-static-top">
+      <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="sr-only">切换导航</span>
+      </a>
+      <div class="navbar-custom-menu">
+        <ul class="nav navbar-nav">
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <img src="${ctxPath!}/res/adminlte/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <span class="hidden-xs">Admin</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="user-header">
+                <img src="${ctxPath!}/res/adminlte/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <p>
+                  Admin - 超级管理员
+                  <small>最近一次登录时间:2016-10-08 15:23:00</small>
+                </p>
+              </li>
+              <li class="user-footer">
+                <div class="pull-right">
+                  <a href="#" class="btn btn-default btn-flat">退出</a>
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <!-- 顶部内容end -->
