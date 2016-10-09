@@ -70,7 +70,7 @@ public class UserServiceImpl implements IUserService {
 
 	public List<User> find(int pageNum, int pageSize) {
 		HashedMap param = new HashedMap();
-		param.put("pageNum", pageNum);
+		param.put("pageIndex", (pageNum - 1) * pageSize);
 		param.put("pageSize", pageSize);
 		try {
 			return iUserMapper.find(param);

@@ -57,7 +57,7 @@
             <properties>                
                 <!--log-->
                 <serverside.log.encoding>UTF-8</serverside.log.encoding>
-                <server.log.level>INFO</server.log.level>
+                <server.log.level>DEBUG</server.log.level>
                 <server.log.path>D:/logs/mgr_frame</server.log.path>
 				<!-- mongo -->
 				<mongo.host.master>127.0.0.1</mongo.host.master>
