@@ -22,7 +22,7 @@ include("../frame/nav.html"){}
        <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Hover Data Table</h3>
+              <button onclick="openModal('','')" type="button" class="btn btn-block btn-primary btn-sm" style="width:100px">新增用户</button>
             </div>
             <!-- 表格div -->
             <div class="box-body" id="tableBox">
@@ -30,39 +30,81 @@ include("../frame/nav.html"){}
             </div>
             <!-- page begin -->
             <div id="page-div">
-			</div>
+      </div>
             <!-- page end -->
           </div>
-      	</div>
-	</div>
+        </div>
+  </div>
     </section>
   </div>
- <!-- 中间主内容区end -->
+<!-- modal begin ============================================= -->
+<div class="modal fade" id="addOrEditUser-Modal" role="dialog" aria-labelledby="addOrEditUser-ModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        <h5 class="modal-title">新增用户</h5>
+      </div>
+      <div class="modal-body">
+         <div class="form-horizontal">
+              <div class="box-body">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">用户名</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="userName" name="userName" placeholder="用户名">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">密码</label>
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="密码">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">确认密码</label>
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" id="passwordRepeat" name="passwordRepeat" placeholder="确认密码">
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+      <div class="modal-footer">
+        <button data-dismiss="modal" class="btn btn-default" type="button">关闭</button>
+        <button class="btn btn-primary" onclick="save()">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- model end ============================================= -->
+<!-- 中间主内容区end -->
 <%
 include("../frame/footer.html"){}
 %>
 
 <script>
 $(document).ready(function(){
-	var pageNum=1;
-	var pageSize=10;
-	//页面初始化加载数据
-	loadData(pageNum,pageSize,"");
+  var pageNum=1;
+  var pageSize=10;
+  //页面初始化加载数据
+  loadData(pageNum,pageSize,"");
     //查询按钮执行方法
     $("#searchButton").click(function(){
-		criteriaQuery(pageNum,pageSize)
-	});
+    criteriaQuery(pageNum,pageSize)
+  });
 });
 
 //条件查询
 function criteriaQuery(pageNum,pageSize){
-	var userName=$("#userName").val();
-	loadData(pageNum,pageSize,userName);
+  var userName=$("#userName").val();
+  loadData(pageNum,pageSize,userName);
 }
 
 //加载服务端数据
 function loadData(pageNum,pageSize,userName){
-	$.get("${ctxPath!}/user/listJson?pageNum="+pageNum+"&pageSize="+pageSize+"&userName="+userName,function(data){
+  $.get("${ctxPath!}/user/listJson?pageNum="+pageNum+"&pageSize="+pageSize+"&userName="+userName,function(data){
         console.log(data);
         createPageData(data);
     });
@@ -74,39 +116,40 @@ function createPageData(resultData){
     var totalRows=resultData.totalNum;
     var pageSize=resultData.pageSize;
     var pageNum=resultData.pageNum;
-		$("#page-div").bs_pagination({
-		totalPages: totalPages,
-		totalRows: totalRows,
-		rowsPerPage:pageSize,
-		currentPage:pageNum,
-		onChangePage: function(event, data){ 
-			criteriaQuery(data.currentPage,data.rowsPerPage);
-		},
-		onLoad: function(event,data){
-			createTable(resultData);
-		}
-	});
-	}
-	
+    $("#page-div").bs_pagination({
+    totalPages: totalPages,
+    totalRows: totalRows,
+    rowsPerPage:pageSize,
+    currentPage:pageNum,
+    onChangePage: function(event, data){ 
+      criteriaQuery(data.currentPage,data.rowsPerPage);
+    },
+    onLoad: function(event,data){
+      createTable(resultData);
+    }
+  });
+  }
+  
 //绘制表格显示数据
 function createTable(tableData){
-	var tableHtml = '<table id="exportTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">' +
+  var tableHtml = '<table id="exportTable"  class="table table-striped table-bordered" cellspacing="0" width="100%">' +
                     ' <thead> <tr>' +
                     ' <th data-field="id" style="text-align:left">编号</th>' +
                     ' <th data-field="userName" style="text-align:left">用户名</th>' +
                     ' <th data-filed="createTime" style="text-align:left">创建时间</th> ' +
                     ' <th data-filed="timestamp" style="text-align:left">修改时间</th> ' +
-                    ' <th data-filed="" style="text-align:left">操作</th>' +
+                    ' <th data-filed="" style="text-align:center">操作</th>' +
                     ' </tr> </thead>' +
                     ' <tbody id="exportTableTbody">';
             var userList = tableData.userList;
-            if('undefined'!=typeof(userList)){	         
+            if('undefined'!=typeof(userList)){           
                 for(var i=0;i<userList.length;i++){ 
                     tableHtml += '<tr><td align="left">'+userList[i].id+'</td>'+
                                      '<td align="left">'+userList[i].userName+'</td>'+
                                      '<td align="left">'+userList[i].createTime+'</td>'+
                                      '<td align="left">'+userList[i].timestamp+'</td>'+
-                                     '<td align="left"><button onclick="openModal(\''+userList[i].id+'\',\''+userList[i].userName+'\')" class="btn btn-xs btn-primary btn-rounded">设置分组</button>'+
+                                     '<td align="center"><button onclick="openModal(\''+userList[i].id+'\',\''+userList[i].userName+'\')" class="btn btn-primary btn-sm">修改</button>&nbsp;'+
+                                     '<button onclick="del(\''+userList[i].id+'\')" class="btn btn-danger btn-sm">删除</button>'+
                                      '</td></tr>';
                 }
             }
@@ -114,29 +157,44 @@ function createTable(tableData){
     $("#tableBox").html(tableHtml);
 }
 //打开遮罩弹框
-function openModal(srcId,srcName,parentId,isPrior){
-	$("#srcId").attr("value",srcId);
-	$("#srcName").attr("value",srcName);
-	$("#parentId").val(parentId);
-	$("#isPrior").val(isPrior);
-	$('#setGroup-Modal').modal('show');
+function openModal(id,userName){
+  $("#id").attr("value",id);
+  $("#userName").attr("value",userName);
+  $('#addOrEditUser-Modal').modal('show');
 }
 //保存数据
 function save(){
-	var srcId=$("#srcId").val();
-	var parentId=$("#parentId").val();
-	var isPrior=$("#isPrior").val();
-	$.post("$rc.contextPath/srcConfig/setSrcPacket", {"srcId":srcId,"parentId":parentId,"isPrior":isPrior},function(data){
-		console.log(data); 
-		if(data.isSuccess==true)
-		{
-			alert("操作成功");
-			$('#setGroup-Modal').modal('hide');
-			//重新加载数据
-			criteriaQuery(1,10);
-		}else{
-			alert("操作失败"); 
-		}
-	}, "json");
+  var id=$("#id").val();
+  var userName=$("#userName").val();
+  var password=$("#password").val();
+  var passwordRepeat=$("#passwordRepeat").val();
+  $.post("${ctxPath!}/user/save", {"id":id,"userName":userName,"password":password},function(data){
+    console.log(data); 
+    if(data.isSuccess==true)
+    {
+      alert("操作成功");
+      $('#addOrEditUser-Modal').modal('hide');
+      //重新加载数据
+      criteriaQuery(1,10);
+    }else{
+      alert("操作失败"); 
+    }
+  }, "json");
+}
+//删除数据
+function del(id){
+  if(confirm("确定要删除数据吗")){
+    $.post("${ctxPath!}/user/del", {"id":id},function(data){
+    console.log(data); 
+    if(data.isSuccess==true)
+    {
+      alert("操作成功");
+      //重新加载数据
+      criteriaQuery(1,10);
+    }else{
+      alert("操作失败"); 
+    }
+  }, "json");
+  }   
 }
 </script>
