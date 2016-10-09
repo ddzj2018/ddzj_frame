@@ -3,7 +3,6 @@ include("../frame/header.html"){}
 include("../frame/nav.html"){}
 %>
 <input id="rightnav" name="rightnav" value="srcConfig" type="hidden"/>
-<input id="userName" name="userName" value="" type="hidden"/>
 <!-- 中间主内容区 begin -->
   <div class="content-wrapper">
     <!-- 面包屑begin -->
@@ -48,32 +47,33 @@ include("../frame/nav.html"){}
         <h5 class="modal-title">新增用户</h5>
       </div>
       <div class="modal-body">
-         <div class="form-horizontal">
+         <form id="vform" class="form-horizontal">
               <div class="box-body">
                 <div class="form-group">
                   <label class="col-sm-2 control-label">用户名</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="userName" name="userName" placeholder="用户名">
+                  	<input type="hidden" id="id" name="id" value="">
+                    <input type="text" class="form-control required" id="userName" name="userName">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">密码</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" id="password" name="password" placeholder="密码">
+                    <input type="password" class="form-control required" id="password" name="password">
                   </div>
                 </div>
                 <div class="form-group">
                   <label class="col-sm-2 control-label">确认密码</label>
                   <div class="col-sm-10">
-                    <input type="password" class="form-control" id="passwordRepeat" name="passwordRepeat" placeholder="确认密码">
+                    <input type="password" class="form-control required" id="passwordRepeat" name="passwordRepeat">
                   </div>
                 </div>
               </div>
-            </div>
-      </div>
-      <div class="modal-footer">
-        <button data-dismiss="modal" class="btn btn-default" type="button">关闭</button>
-        <button class="btn btn-primary" onclick="save()">保存</button>
+              <div class="box-footer" style="text-align:right">
+                <button type="button" data-dismiss="modal" class="btn btn-default">关闭</button>
+                <button type="submit" class="btn btn-primary">保存</button>
+              </div>
+            </form>
       </div>
     </div>
   </div>
@@ -94,6 +94,36 @@ $(document).ready(function(){
     $("#searchButton").click(function(){
     criteriaQuery(pageNum,pageSize)
   });
+    
+  
+  //表单验证
+    $("#vform").validate({
+		rules: {
+			userName: {
+				required: true
+			},
+			password: {
+				required: true
+			},
+			passwordRepeat: {
+				required: true
+			}
+		},
+		messages: {
+			userName: {
+				required: "<span class='text_error'>不能为空</span>"
+			},
+			password: {
+				required: "<span class='text_error'>不能为空</span>"
+			},
+			passwordRepeat: {
+				required: "<span class='text_error'>不能为空</span>"
+			}
+		},
+		submitHandler:function(form){
+			save();
+		} 
+    });
 });
 
 //条件查询
@@ -106,7 +136,8 @@ function criteriaQuery(pageNum,pageSize){
 function loadData(pageNum,pageSize,userName){
   $.get("${ctxPath!}/user/listJson?pageNum="+pageNum+"&pageSize="+pageSize+"&userName="+userName,function(data){
         console.log(data);
-        createPageData(data);
+        var retData  =  JSON.parse(data);
+        createPageData(retData);
     });
 }
 

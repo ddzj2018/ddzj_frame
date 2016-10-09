@@ -28,7 +28,19 @@
         <property name="maxInMemorySize" value="4096" />
 	</bean>
 	<!-- 启用注解标签 -->
-	<mvc:annotation-driven />
+	<mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <value>text/html;charset=UTF-8</value>  
+                        <value>text/plain;charset=UTF-8</value>  
+                        <value>application/json;charset=UTF-8</value>  
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
 	<!-- 模板配置 -->
 	<bean id="beetlConfig" class="org.beetl.ext.spring.BeetlGroupUtilConfiguration" init-method="init">
 		<property name="configFileResource" value="/WEB-INF/classes/beetl.properties"/>
