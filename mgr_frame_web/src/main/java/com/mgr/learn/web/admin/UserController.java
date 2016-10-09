@@ -32,13 +32,13 @@ public class UserController {
 		return "/user/list";
 	}
 	@RequestMapping(value = "/listJson")
-	public @ResponseBody JSONObject listJson(Integer pageNum,Integer pageSize) {
-		log.info(String.format("==listJson pageNum:%s pageSize:%s", pageNum,pageSize));
+	public @ResponseBody JSONObject listJson(Integer pageNum,Integer pageSize,String userName) {
+		log.info(String.format("==listJson pageNum:%s pageSize:%s userName:%s", pageNum,pageSize,userName));
 		List<User> userList=userServiceImpl.find(pageNum, pageSize);
-		int total=userServiceImpl.count();
+		int totalNum=userServiceImpl.count();
 		JSONObject returnObject = new JSONObject();
 		returnObject.put("userList", JSONArray.fromObject(userList));
-		returnObject.put("total", total);
+		returnObject.put("totalNum", totalNum);
 		returnObject.put("pageNum", pageNum);
 		returnObject.put("pageSize", pageSize);
 		return returnObject;

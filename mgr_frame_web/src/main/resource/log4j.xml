@@ -22,7 +22,7 @@
 		<appender-ref ref="CONSOLE" />
 	</logger>
 	<logger name="org.mybatis.spring.SqlSessionTemplate" additivity="false">
-		<level value="DEBUG" />
+		<level value="${server.log.level}" />
 		<appender-ref ref="CONSOLE" />
 	</logger>
 	<logger name="java.sql.Connection" additivity="false">
