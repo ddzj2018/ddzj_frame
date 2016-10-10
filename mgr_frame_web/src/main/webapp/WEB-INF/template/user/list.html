@@ -52,7 +52,7 @@ include("../frame/nav.html"){}
                 <div class="form-group">
                   <label class="col-sm-2 control-label">用户名</label>
                   <div class="col-sm-10">
-                  	<input type="hidden" id="id" name="id" value="">
+                    <input type="hidden" id="id" name="id" value="">
                     <input type="text" class="form-control required" id="userName" name="userName">
                   </div>
                 </div>
@@ -98,31 +98,31 @@ $(document).ready(function(){
   
   //表单验证
     $("#vform").validate({
-		rules: {
-			userName: {
-				required: true
-			},
-			password: {
-				required: true
-			},
-			passwordRepeat: {
-				required: true
-			}
-		},
-		messages: {
-			userName: {
-				required: "<span class='text_error'>不能为空</span>"
-			},
-			password: {
-				required: "<span class='text_error'>不能为空</span>"
-			},
-			passwordRepeat: {
-				required: "<span class='text_error'>不能为空</span>"
-			}
-		},
-		submitHandler:function(form){
-			save();
-		} 
+    rules: {
+      userName: {
+        required: true
+      },
+      password: {
+        required: true
+      },
+      passwordRepeat: {
+        required: true
+      }
+    },
+    messages: {
+      userName: {
+        required: "<span class='text_error'>不能为空</span>"
+      },
+      password: {
+        required: "<span class='text_error'>不能为空</span>"
+      },
+      passwordRepeat: {
+        required: "<span class='text_error'>不能为空</span>"
+      }
+    },
+    submitHandler:function(form){
+      save();
+    } 
     });
 });
 
@@ -199,7 +199,11 @@ function save(){
   var userName=$("#userName").val();
   var password=$("#password").val();
   var passwordRepeat=$("#passwordRepeat").val();
-  $.post("${ctxPath!}/user/save", {"id":id,"userName":userName,"password":password},function(data){
+  var jsonObj='{"id":"' + id + '","userName":"'  + userName + '","password":"' + password + '"}';  
+  $.ajaxSetup({  
+      contentType : 'application/json'  
+  }); 
+  $.post("${ctxPath!}/user/save",jsonObj,function(data){
     console.log(data); 
     if(data.isSuccess==true)
     {

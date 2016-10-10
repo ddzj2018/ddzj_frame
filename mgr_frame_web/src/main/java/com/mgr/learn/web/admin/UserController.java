@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mgr.learn.api.IUserService;
@@ -44,7 +45,7 @@ public class UserController {
 		returnObject.put("pageSize", pageSize);
 		return returnObject;
 	}
-	@RequestMapping(value = "/save")
+	@RequestMapping(value = "/save",method = RequestMethod.POST, produces="application/json")
 	public @ResponseBody JSONObject save(@RequestBody User user) {
 		log.info(user);
 		JSONObject returnObject = new JSONObject();
