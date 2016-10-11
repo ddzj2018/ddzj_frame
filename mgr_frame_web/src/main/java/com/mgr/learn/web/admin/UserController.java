@@ -48,15 +48,30 @@ public class UserController {
 	@RequestMapping(value = "/save",method = RequestMethod.POST, produces="application/json")
 	public @ResponseBody JSONObject save(@RequestBody User user) {
 		log.info(user);
+		int flag=0;
+		if(user.getId()==0){
+			flag=userServiceImpl.insert(user);
+		}else{
+			flag=userServiceImpl.update(user);
+		}
 		JSONObject returnObject = new JSONObject();
+		if(flag==1){
+			returnObject.put("isSuccess", true);
+		}else{
+			returnObject.put("isSuccess", false);
+		}
 		return returnObject;
 	}
-	@RequestMapping(value = "/del")
-	public @ResponseBody JSONObject del(Model model) {
+	@RequestMapping(value = "/del",method = RequestMethod.POST, produces="application/json")
+	public @ResponseBody JSONObject del(Integer id) {
+		int flag=userServiceImpl.del(id);
 		JSONObject returnObject = new JSONObject();
+		if(flag==1){
+			returnObject.put("isSuccess", true);
+		}else{
+			returnObject.put("isSuccess", false);
+		}
 		return returnObject;
 	}
-	
-	
 	
 }

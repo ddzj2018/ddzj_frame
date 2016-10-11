@@ -40,7 +40,7 @@
               AND userName like '%${userName}%' 
             ]]>
 		</if>
-		order by userName limit #{pageIndex},#{pageSize}
+		order by id limit #{pageIndex},#{pageSize}
 	</select>
 	<select id="count" resultType="int" parameterType="java.util.Map">
 		<![CDATA[

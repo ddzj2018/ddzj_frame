@@ -1,5 +1,6 @@
 package com.mgr.learn.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.collections.map.HashedMap;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mgr.learn.api.IUserService;
+import com.mgr.learn.common.DateUtil;
 import com.mgr.learn.dao.mapper.IUserMapper;
 import com.mgr.learn.domain.User;
 
@@ -20,6 +22,7 @@ public class UserServiceImpl implements IUserService {
 	public int insert(User user) {
 		int result = 0;
 		try {
+			user.setCreateTime(DateUtil.dateToStr(new Date(), DateUtil.yyyyMMddhhmmssStr));
 			iUserMapper.insert(user);
 			result = 1;
 		} catch (Exception e) {
