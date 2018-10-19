@@ -16,7 +16,7 @@
 	</modules>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<spring.version>4.3.16.RELEASE</spring.version>
+		<spring.version>4.3.20.RELEASE</spring.version>
 		<aspectj.version>1.6.11</aspectj.version>
 	</properties>
 	<dependencies>
